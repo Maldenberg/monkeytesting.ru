@@ -76,7 +76,34 @@
 
         textarea {
             resize: none;
-            /* Отключаем изменение размера поля */
+        }
+
+        .work-period {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .work-period label {
+            flex: 0 0 10%;
+        }
+
+        .work-period input[type="date"],
+        .work-period select {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .work-period .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .checkbox-container label {
+            margin-bottom: 0;
         }
 
         .submit-btn {
@@ -114,6 +141,17 @@
 
             .submit-btn {
                 font-size: 1.1rem;
+            }
+
+            .work-period {
+                flex-wrap: wrap;
+            }
+
+            .work-period label,
+            .work-period input[type="date"],
+            .work-period select,
+            .checkbox-container {
+                flex: 1 1 100%;
             }
         }
 
@@ -170,8 +208,19 @@
         <input type="text" id="referral" name="referral" placeholder="Введите имя или ник">
 
         <h2>Сведения о работе</h2>
-        <label for="current_job">Текущее место работы:</label>
+        <label for="current_job">Последнее (текущее) место работы:</label>
         <textarea id="current_job" name="current_job" placeholder="Введите текущее место работы"></textarea>
+
+        <div class="work-period">
+            <label for="current_job_start">С:</label>
+            <input type="date" id="current_job_start" name="current_job_start">
+            <label for="current_job_end">По:</label>
+            <input type="date" id="current_job_end" name="current_job_end">
+            <div class="checkbox-container">
+                <input type="checkbox" id="current_job_present" name="current_job_present" value="present">
+                <label for="current_job_present">По н.в.</label>
+            </div>
+        </div>
 
         <label for="job_format">Форма трудоустройства:</label>
         <select id="job_format" name="job_format">
@@ -182,6 +231,17 @@
 
         <label for="previous_job">Предыдущее место работы:</label>
         <textarea id="previous_job" name="previous_job" placeholder="Введите предыдущее место работы"></textarea>
+
+        <div class="work-period">
+            <label for="previous_job_start">С:</label>
+            <input type="date" id="previous_job_start" name="previous_job_start">
+            <label for="previous_job_end">По:</label>
+            <input type="date" id="previous_job_end" name="previous_job_end">
+            <div class="checkbox-container">
+                <input type="checkbox" id="current_job_present" name="current_job_present" value="present">
+                <label for="current_job_present">По н.в.</label>
+            </div>
+        </div>
 
         <label for="prev_job_format">Форма трудоустройства:</label>
         <select id="prev_job_format" name="prev_job_format">
@@ -195,20 +255,41 @@
         <select id="education_level" name="education_level">
             <option value="среднее">Среднее</option>
             <option value="среднее специальное">Среднее специальное</option>
-            <option value="Неоконченное высшее">Некоконченное высшее (бросил учебу)</option>
-            <option value="Неоконченное высшее">Некоконченное высшее (еще учишься)</option>
             <option value="высшее">Высшее</option>
         </select>
 
         <label for="education_place">Место учебы (название учебного заведения):</label>
         <textarea id="education_place" name="education_place"
             placeholder="Введите название учебного заведения"></textarea>
-
+        <div class="education-period">
+            <label for="current_education_start">С:</label>
+            <input type="date" id="current_education_start" name="current_education_start">
+            <label for="current_education_end">По:</label>
+            <input type="date" id="current_education_end" name="current_education_end">
+            <div class="checkbox-container">
+                <input type="checkbox" id="current_job_present" name="current_job_present" value="present">
+                <label for="current_job_present">По н.в.</label>
+            </div>
+        </div>
         <label for="faculty">Факультет. Специальность:</label>
         <textarea id="faculty" name="faculty" placeholder="Введите факультет и специальность"></textarea>
 
+
         <button type="submit" class="submit-btn">Отправить анкету</button>
     </form>
+
+    <script>
+        // Скрипт для отключения поля "По" при выборе "По н.в."
+        document.getElementById('current_job_present').addEventListener('change', function () {
+            const currentJobEnd = document.getElementById('current_job_end');
+            if (this.checked) {
+                currentJobEnd.disabled = true;
+                currentJobEnd.value = '';
+            } else {
+                currentJobEnd.disabled = false;
+            }
+        });
+    </script>
 </body>
 
 </html>
