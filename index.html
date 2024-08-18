@@ -1,37 +1,97 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MonkeyTesting</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link type="image/x-icon" href="styles/favicon-mt.png" rel="shortcut icon">
+    <title>Monkey Testing</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a74da, #083b6d);
+            font-family: Courier, monospace;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .typing-animation {
+            font-size: 3rem;
+            white-space: nowrap;
+            border-right: 3px solid;
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+            display: block;
+            animation: typing 4s steps(15, end) 1s infinite alternate both;
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            50% {
+                width: 15ch;
+            }
+
+            100% {
+                width: 0;
+            }
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #0a74da;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Медиазапросы для адаптивного дизайна */
+        @media (max-width: 768px) {
+            .typing-animation {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .typing-animation {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-        <!-- Placeholder for logo graphic -->
-        <div class="logo">SERGEY MALDENBERG</div>
-        <nav>
-            <a href="#" class="return-home">MONKEY TESTING</a>
-        </nav>
-    </header>
-    <main>
-        <section class="contact-form">
-            <!-- Placeholder for the main graphic element -->
-            <h1>Полезные ссылки:</h1>
-            <form action="#" method="post">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeaiZEz9LkEk_eGErFBCfpmemDOgHvv0fSudif0bM6owJTFbg/viewform">Запись на собеседование</a>
-                <a href="https://newinterview-9148f5e2b934.herokuapp.com/">Запись на собес 2.0</a>
-                <a href="https://monkeytesting.ru/metricaqa/index.html">Тестирование верстки</a>
-            
-<!--                 <input type="text" name="name" placeholder="Иван Иванов">
-                <input type="text" name="mail" placeholder="mail@mail.ru">
-                <input type="phone" name="phone" placeholder="+7 (999) 888-77-66">
-                <button type="submit">Регистрация</button> -->
-            </form>
-        </section>
-    </main>
-    <!-- Placeholder for any additional graphics -->
+    <div class="container">
+        <div class="typing-animation">Monkey Testing</div>
+        <button class="btn" onclick="alert('Создание анкеты!')">Создать анкету</button>
+    </div>
 </body>
+
 </html>
