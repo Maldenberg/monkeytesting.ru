@@ -16,11 +16,13 @@
             background: linear-gradient(135deg, #0a74da, #083b6d);
             font-family: Courier, monospace;
             color: #fff;
+            overflow: hidden;
         }
 
         .container {
             text-align: center;
             padding: 0 20px;
+            position: relative;
         }
 
         .typing-animation {
@@ -31,6 +33,8 @@
             margin: 0 auto 20px auto;
             display: block;
             animation: typing 4s steps(15, end) 1s infinite alternate both;
+            color: #fff;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
         }
 
         @keyframes typing {
@@ -48,18 +52,70 @@
         }
 
         .btn {
+            font-family: Courier, monospace;
             background-color: #ffffff;
             color: #0a74da;
             padding: 15px 30px;
             font-size: 1.2rem;
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .btn:hover {
             background-color: #e0e0e0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Добавляем стиль для плавающих элементов */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+
+            50% {
+                transform: translateY(-20px) translateX(20px);
+            }
+
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        .circle1 {
+            width: 100px;
+            height: 100px;
+            bottom: 10%;
+            left: 10%;
+            animation-duration: 6s;
+        }
+
+        .circle2 {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: 15%;
+            animation-duration: 8s;
+        }
+
+        .circle3 {
+            width: 200px;
+            height: 200px;
+            bottom: 30%;
+            right: 5%;
+            animation-duration: 10s;
         }
 
         /* Медиазапросы для адаптивного дизайна */
@@ -72,6 +128,12 @@
                 padding: 12px 25px;
                 font-size: 1.1rem;
             }
+
+            .circle1,
+            .circle2,
+            .circle3 {
+                display: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -83,6 +145,12 @@
                 padding: 10px 20px;
                 font-size: 1rem;
             }
+
+            .circle1,
+            .circle2,
+            .circle3 {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -90,7 +158,13 @@
 <body>
     <div class="container">
         <div class="typing-animation">Monkey Testing</div>
-        <button class="btn" onclick="alert('Создание анкеты!')">Создать анкету</button>
+        <!-- Ссылка, оформленная как кнопка -->
+        <a href="candidate-form.html" class="btn">Создать анкету</a>
+
+        <!-- Добавляем плавающие элементы -->
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
     </div>
 </body>
 

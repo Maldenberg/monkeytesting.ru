@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета ученика</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Courier, monospace;
+            background: linear-gradient(135deg, #0a74da, #083b6d);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 0;
+            color: #fff;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 10px;
+            font-family: Courier, monospace;
+            color: #fff;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #e0e0e0;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="tel"]:focus,
+        input[type="url"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        textarea {
+            resize: none;
+            /* Отключаем изменение размера поля */
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #fff;
+            color: #0a74da;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #e0e0e0;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            form {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            label {
+                font-size: 1rem;
+            }
+
+            .submit-btn {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            form {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            label {
+                font-size: 0.9rem;
+            }
+
+            .submit-btn {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <h1>Анкета ученика</h1>
+        <h2>Основная информация</h2>
+        <label for="fio">ФИО:</label>
+        <input type="text" id="fio" name="fio" placeholder="Введите ваше ФИО">
+
+        <label for="dob">Дата рождения:</label>
+        <input type="date" id="dob" name="dob">
+
+        <label for="vk">Ссылка на ВК:</label>
+        <input type="url" id="vk" name="vk" placeholder="https://vk.com/ваш_профиль">
+
+        <label for="telegram">Telegram:</label>
+        <input type="text" id="telegram" name="telegram" placeholder="@ваш_ник">
+
+        <label for="phone">Номер телефона:</label>
+        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__">
+
+        <label for="address">Город проживания:</label>
+        <input type="text" id="address" name="address" placeholder="Введите город">
+
+        <label for="military">Отношение к воинской службе:</label>
+        <select id="military" name="military">
+            <option value="Есть военный билет">Есть военный билет</option>
+            <option value="Есть приписное">Есть приписное</option>
+            <option value="Не служил, доков нет">Не служил, доков нет</option>
+        </select>
+
+        <label for="referral">Кто порекомендовал?</label>
+        <input type="text" id="referral" name="referral" placeholder="Введите имя или ник">
+
+        <h2>Сведения о работе</h2>
+        <label for="current_job">Текущее место работы:</label>
+        <textarea id="current_job" name="current_job" placeholder="Введите текущее место работы"></textarea>
+
+        <label for="job_format">Форма трудоустройства:</label>
+        <select id="job_format" name="job_format">
+            <option value="по трудовой книге (ТК РФ)">По трудовой книге (ТК РФ)</option>
+            <option value="ГПХ">ГПХ</option>
+            <option value="неофициально">Неофициально</option>
+        </select>
+
+        <label for="previous_job">Предыдущее место работы:</label>
+        <textarea id="previous_job" name="previous_job" placeholder="Введите предыдущее место работы"></textarea>
+
+        <label for="prev_job_format">Форма трудоустройства:</label>
+        <select id="prev_job_format" name="prev_job_format">
+            <option value="по трудовой книге (ТК РФ)">По трудовой книге (ТК РФ)</option>
+            <option value="ГПХ">ГПХ</option>
+            <option value="неофициально">Неофициально</option>
+        </select>
+
+        <h2>Сведения об учебе</h2>
+        <label for="education_level">Тип образования:</label>
+        <select id="education_level" name="education_level">
+            <option value="среднее">Среднее</option>
+            <option value="среднее специальное">Среднее специальное</option>
+            <option value="Неоконченное высшее">Некоконченное высшее (бросил учебу)</option>
+            <option value="Неоконченное высшее">Некоконченное высшее (еще учишься)</option>
+            <option value="высшее">Высшее</option>
+        </select>
+
+        <label for="education_place">Место учебы (название учебного заведения):</label>
+        <textarea id="education_place" name="education_place"
+            placeholder="Введите название учебного заведения"></textarea>
+
+        <label for="faculty">Факультет. Специальность:</label>
+        <textarea id="faculty" name="faculty" placeholder="Введите факультет и специальность"></textarea>
+
+        <button type="submit" class="submit-btn">Отправить анкету</button>
+    </form>
+</body>
+
+</html>
