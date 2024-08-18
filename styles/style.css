@@ -1,0 +1,74 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-weight: bold;
+}
+
+.return-home {
+    text-decoration: none;
+    color: black;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px; /* Added padding for spacing */
+}
+
+.contact-form {
+    flex-basis: 45%; /* Adjusted for side by side layout */
+}
+
+.project-options {
+    flex-basis: 45%; /* Adjusted for side by side layout */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns of icons */
+    gap: 20px;
+}
+
+.option {
+    text-align: center;
+}
+
+.contact-form h1 {
+    text-align: center;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 0;
+}
+
+button {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.project-type label {
+    display: block;
+}
+
+/* Additional styles for responsive design or specific adjustments */
