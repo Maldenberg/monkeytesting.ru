@@ -21,7 +21,11 @@
         h1 {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            margin-bottom: 50px;
         }
 
         form {
@@ -34,7 +38,7 @@
 
         label {
             display: block;
-            margin: 15px 0 5px;
+            margin: 15px 0 10px;
             font-weight: bold;
             font-size: 1.1rem;
         }
@@ -102,11 +106,36 @@
             gap: 35px;
         }
 
+        .education-period {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .education-period label {
+            flex: 0 0 10%;
+        }
+
+        .education-period input[type="date"],
+        .education-period select {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .education-period .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
         .checkbox-container label {
             margin-bottom: 0;
         }
 
         .submit-btn {
+            margin-top: 40px;
             display: block;
             width: 100%;
             padding: 15px;
@@ -150,6 +179,17 @@
             .work-period label,
             .work-period input[type="date"],
             .work-period select,
+            .checkbox-container {
+                flex: 1 1 100%;
+            }
+
+            .education-period {
+                flex-wrap: wrap;
+            }
+
+            .education-period label,
+            .education-period input[type="date"],
+            .education-period select,
             .checkbox-container {
                 flex: 1 1 100%;
             }
@@ -209,7 +249,7 @@
 
         <h2>Сведения о работе</h2>
         <label for="current_job">Последнее (текущее) место работы:</label>
-        <textarea id="current_job" name="current_job" placeholder="Введите текущее место работы"></textarea>
+        <textarea id="current_job" name="current_job" placeholder="Название компании, должность"></textarea>
 
         <div class="work-period">
             <label for="current_job_start">С:</label>
@@ -230,7 +270,7 @@
         </select>
 
         <label for="previous_job">Предыдущее место работы:</label>
-        <textarea id="previous_job" name="previous_job" placeholder="Введите предыдущее место работы"></textarea>
+        <textarea id="previous_job" name="previous_job" placeholder="Название компании, должность"></textarea>
 
         <div class="work-period">
             <label for="previous_job_start">С:</label>
@@ -279,8 +319,19 @@
     </form>
 
     <script>
-        // Скрипт для отключения поля "По" при выборе "По н.в."
+        // Скрипт для отключения поля "По" при выборе "По н.в." для места работы
         document.getElementById('current_job_present').addEventListener('change', function () {
+            const currentJobEnd = document.getElementById('current_job_end');
+            if (this.checked) {
+                currentJobEnd.disabled = true;
+                currentJobEnd.value = '';
+            } else {
+                currentJobEnd.disabled = false;
+            }
+        });
+
+        // Скрипт для отключения поля "По" при выборе "По н.в." для места учебы
+        document.getElementById('current_education_present').addEventListener('change', function () {
             const currentJobEnd = document.getElementById('current_job_end');
             if (this.checked) {
                 currentJobEnd.disabled = true;
