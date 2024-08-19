@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monkey Testing</title>
+    <title>Авторизация</title>
     <style>
         body {
             margin: 0;
@@ -25,37 +25,36 @@
             position: relative;
         }
 
-        .typing-animation {
-            font-size: 3rem;
-            white-space: nowrap;
-            border-right: 3px solid;
-            overflow: hidden;
-            margin: 0 auto 30px auto;
-            display: block;
-            animation: typing 4s steps(15, end) 1s infinite alternate both;
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 50px;
+            font-family: Courier, monospace;
+            font-size: 1.2rem;
+            background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
-            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 300px;
         }
 
-        @keyframes typing {
-            0% {
-                width: 0;
-            }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
 
-            50% {
-                width: 15ch;
-            }
-
-            100% {
-                width: 0;
-            }
+        input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 3px 8px rgba(255, 255, 255, 0.4);
         }
 
         .btn {
             font-family: Courier, monospace;
             background-color: #ffffff;
             color: #0a74da;
-            padding: 15px 30px;
+            padding: 12px 30px;
             font-size: 1.2rem;
             border: none;
             border-radius: 50px;
@@ -63,20 +62,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             text-decoration: none;
-        }
-
-        .btn2 {
-            font-family: Courier, monospace;
-            background-color: #ffffff;
-            color: #0a74da;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            text-decoration: none;
+            margin-top: 20px;
         }
 
         .btn:hover {
@@ -85,13 +71,7 @@
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
-        .btn2:hover {
-            background-color: #e0e0e0;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Добавляем стиль для плавающих элементов */
+        /* Плавающие элементы */
         .circle {
             position: absolute;
             border-radius: 50%;
@@ -138,19 +118,13 @@
             animation-duration: 10s;
         }
 
-        /* Медиазапросы для адаптивного дизайна */
+        /* Адаптивный дизайн */
         @media (max-width: 768px) {
-            .typing-animation {
-                font-size: 2.5rem;
-            }
-
-            .btn {
-                padding: 12px 25px;
+            input {
                 font-size: 1.1rem;
             }
 
-            .btn2 {
-                padding: 12px 25px;
+            .btn {
                 font-size: 1.1rem;
             }
 
@@ -162,24 +136,14 @@
         }
 
         @media (max-width: 480px) {
-            .typing-animation {
-                font-size: 2rem;
+            input {
+                font-size: 1rem;
+                padding: 10px;
             }
 
             .btn {
-                padding: 10px 20px;
                 font-size: 1rem;
-            }
-
-            .btn2 {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-
-            .circle1,
-            .circle2,
-            .circle3 {
-                display: none;
+                padding: 10px 25px;
             }
         }
     </style>
@@ -187,16 +151,17 @@
 
 <body>
     <div class="container">
-        <div class="typing-animation">Monkey Testing</div>
-        <!-- Ссылка, оформленная как кнопка -->
-        <a href="candidate-form.html" class="btn">Создать анкету</a>
-        <a href="auth.html" class="btn2">Авторизация</a>
-
-        <!-- Добавляем плавающие элементы -->
-        <div class="circle circle1"></div>
-        <div class="circle circle2"></div>
-        <div class="circle circle3"></div>
+        <input type="email" name="email" placeholder="Эл. почта" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <div>
+            <button type="submit" class="btn">Войти</button>
+        </div>
     </div>
+
+    <!-- Плавающие элементы -->
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
 </body>
 
 </html>

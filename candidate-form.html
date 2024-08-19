@@ -201,37 +201,41 @@
 
         <h2>Сведения о работе</h2>
         <label for="current_job">Текущее место работы:</label>
-        <textarea id="current_job" name="current_job" placeholder="ООО 'Контора', тракторист-механизатор"></textarea>
-
-        <div class="work-period">
-            <label for="current_job_start">С:</label>
-            <input type="date" id="current_job_start" name="current_job_start">
-
-            <label for="current_job_end">По:</label>
-            <input type="date" id="current_job_end" name="current_job_end">
-        </div>
         <div class="checkbox-container">
-            <input type="checkbox" id="current_job_present" name="current_job_present" value="present">
-            <label for="current_job_present">По н.в.</label>
+            <input type="checkbox" id="current_job_absent" name="current_job_absent" value="absent">
+            <label for="current_job_absent">Отсутствует</label>
+        </div>
+        <div id="current_job_section">
+            <textarea id="current_job" name="current_job" placeholder="Введите текущее место работы"></textarea>
+
+            <div class="work-period">
+                <label for="current_job_start">С:</label>
+                <input type="date" id="current_job_start" name="current_job_start">
+
+                <label for="current_job_end">По:</label>
+                <input type="date" id="current_job_end" name="current_job_end">
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" id="current_job_present" name="current_job_present" value="present">
+                <label for="current_job_present">По н.в.</label>
+            </div>
+
+            <label for="job_format">Форма трудоустройства:</label>
+            <select id="job_format" name="job_format">
+                <option value="по трудовой книге (ТК РФ)">По трудовой книге (ТК РФ)</option>
+                <option value="ГПХ">ГПХ</option>
+                <option value="неофициально">Неофициально</option>
+            </select>
         </div>
 
-        <label for="job_format">Форма трудоустройства:</label>
-        <select id="job_format" name="job_format">
-            <option value="по трудовой книге (ТК РФ)">По трудовой книге (ТК РФ)</option>
-            <option value="ГПХ">ГПХ</option>
-            <option value="неофициально">Неофициально</option>
-        </select>
-
-        <h2>Предыдущее место работы:</h2>
+        <label for="previous_job">Предыдущее место работы:</label>
         <div class="checkbox-container">
             <input type="checkbox" id="previous_job_absent" name="previous_job_absent" value="absent">
             <label for="previous_job_absent">Отсутствует</label>
         </div>
 
         <div id="previous_job_section">
-            <label for="previous_job">Предыдущее место работы:</label>
-            <textarea id="previous_job" name="previous_job"
-                placeholder="ООО 'Контора', тракторист-механизатор"></textarea>
+            <textarea id="previous_job" name="previous_job" placeholder="Введите предыдущее место работы"></textarea>
 
             <div class="work-period">
                 <label for="previous_job_start">С:</label>
@@ -255,7 +259,7 @@
             <option value="среднее">Среднее</option>
             <option value="среднее специальное">Среднее специальное</option>
             <option value="Неоконченное высшее">Неоконченное высшее (бросил учебу)</option>
-            <option value="Неоконченное высшее">Неполное высшее (еще учусь)</option>
+            <option value="Неоконченное высшее">Неоконченное высшее (еще учусь)</option>
             <option value="высшее">Высшее</option>
         </select>
 
@@ -311,7 +315,17 @@
             }
         });
 
-        // Логика для скрытия секции "Предыдущее место работы"
+        // Логика для скрытия полей, относящихся к текущему месту работы
+        document.getElementById('current_job_absent').addEventListener('change', function () {
+            const currentJobSection = document.getElementById('current_job_section');
+            if (this.checked) {
+                currentJobSection.classList.add('hidden');
+            } else {
+                currentJobSection.classList.remove('hidden');
+            }
+        });
+
+        // Логика для скрытия полей, относящихся к предыдущему месту работы
         document.getElementById('previous_job_absent').addEventListener('change', function () {
             const previousJobSection = document.getElementById('previous_job_section');
             if (this.checked) {
