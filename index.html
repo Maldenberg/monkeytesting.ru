@@ -4,319 +4,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анкета ученика</title>
+    <title>Monkey Testing</title>
     <style>
         body {
             margin: 0;
-            padding: 20px;
-            font-family: Courier, monospace;
-            background: linear-gradient(135deg, #0a74da, #083b6d);
-            color: #fff;
+            padding: 0;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            background: linear-gradient(135deg, #0a74da, #083b6d);
+            font-family: Courier, monospace;
+            color: #fff;
+            overflow: hidden;
         }
 
-        h1 {
+        .container {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        form {
-            max-width: 600px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 30px 0;
-            color: #fff;
-        }
-
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        input[type="text"],
-        input[type="tel"],
-        input[type="url"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border: none;
-            border-radius: 10px;
-            font-family: Courier, monospace;
-            color: #fff;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: #e0e0e0;
-        }
-
-        input[type="text"]:focus,
-        input[type="tel"]:focus,
-        input[type="url"]:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-        }
-
-        input[type="date"] {
-            width: 100%;
-            padding: 12px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border: none;
-            border-radius: 10px;
-            font-family: Courier, monospace;
-            color: #fff;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-            appearance: none;
+            padding: 0 20px;
             position: relative;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        input[type="date"]:disabled {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: url('https://upload.wikimedia.org/wikipedia/commons/7/72/Calendar_font_awesome.svg') no-repeat;
-            width: 20px;
-            height: 20px;
-            background-size: contain;
-        }
-
-        /* Стили для чек-боксов */
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .checkbox-container input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #0a74da;
-        }
-
-        .checkbox-container label {
-            font-size: 1rem;
-        }
-
-        /* Стили для мобильных устройств */
-        .work-period {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .work-period input[type="date"] {
-                width: calc(50% - 10px);
-            }
-
-            .checkbox-container {
-                justify-content: flex-start;
-            }
-        }
-
-        .submit-btn {
+        .typing-animation {
+            font-size: 3rem;
+            white-space: nowrap;
+            border-right: 3px solid;
+            overflow: hidden;
+            margin: 0 auto 30px auto;
             display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: #fff;
+            animation: typing 4s steps(15, end) 1s infinite alternate both;
+            color: #fff;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+
+            50% {
+                width: 15ch;
+            }
+
+            100% {
+                width: 0;
+            }
+        }
+
+        .btn {
+            font-family: Courier, monospace;
+            background-color: #ffffff;
             color: #0a74da;
-            border: none;
-            border-radius: 30px;
+            padding: 15px 30px;
             font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        .submit-btn:hover {
+        .btn:hover {
             background-color: #e0e0e0;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* Скрываем блок через класс hidden */
-        .hidden {
-            display: none;
+        /* Добавляем стиль для плавающих элементов */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+
+            50% {
+                transform: translateY(-20px) translateX(20px);
+            }
+
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        .circle1 {
+            width: 100px;
+            height: 100px;
+            bottom: 10%;
+            left: 10%;
+            animation-duration: 6s;
+        }
+
+        .circle2 {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: 15%;
+            animation-duration: 8s;
+        }
+
+        .circle3 {
+            width: 200px;
+            height: 200px;
+            bottom: 30%;
+            right: 5%;
+            animation-duration: 10s;
+        }
+
+        /* Медиазапросы для адаптивного дизайна */
+        @media (max-width: 768px) {
+            .typing-animation {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+
+            .circle1,
+            .circle2,
+            .circle3 {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .typing-animation {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            .circle1,
+            .circle2,
+            .circle3 {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
-    <form>
-        <h1>Анкета ученика</h1>
-        <h2>Основная информация</h2>
-        <label for="fio">ФИО:</label>
-        <input type="text" id="fio" name="fio" placeholder="Введите ваше ФИО">
+    <div class="container">
+        <div class="typing-animation">Monkey Testing</div>
+        <!-- Ссылка, оформленная как кнопка -->
+        <a href="candidate-form.html" class="btn">Создать анкету</a>
 
-        <label for="dob">Дата рождения:</label>
-        <input type="date" id="dob" name="dob">
-
-        <label for="vk">Ссылка на ВК:</label>
-        <input type="url" id="vk" name="vk" placeholder="https://vk.com/ваш_профиль">
-
-        <label for="telegram">Telegram:</label>
-        <input type="text" id="telegram" name="telegram" placeholder="@ваш_ник">
-
-        <label for="phone">Номер телефона:</label>
-        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__">
-
-        <label for="address">Город проживания:</label>
-        <input type="text" id="address" name="address" placeholder="Введите город">
-
-        <label for="military">Отношение к воинской службе:</label>
-        <select id="military" name="military">
-            <option value="Есть военный билет">Есть военный билет</option>
-            <option value="Есть приписное">Есть приписное</option>
-            <option value="Не служил, доков нет">Не служил, доков нет</option>
-        </select>
-
-        <label for="referral">Кто порекомендовал?</label>
-        <input type="text" id="referral" name="referral" placeholder="Введите имя или ник">
-
-        <h2>Сведения о работе</h2>
-        <label for="current_job">Текущее место работы:</label>
-        <textarea id="current_job" name="current_job" placeholder="Введите текущее место работы"></textarea>
-
-        <div class="work-period">
-            <label for="current_job_start">С:</label>
-            <input type="date" id="current_job_start" name="current_job_start">
-
-            <label for="current_job_end">По:</label>
-            <input type="date" id="current_job_end" name="current_job_end">
-        </div>
-        <div class="checkbox-container">
-            <input type="checkbox" id="current_job_present" name="current_job_present" value="present">
-            <label for="current_job_present">По настоящее время</label>
-        </div>
-
-        <label for="job_format">Форма трудоустройства:</label>
-        <select id="job_format" name="job_format">
-            <option value="по трудовой книге (ТК РФ)">По трудовой книге (ТК РФ)</option>
-            <option value="ГПХ">ГПХ</option>
-            <option value="неофициально">Неофициально</option>
-        </select>
-
-        <h2>Предыдущее место работы:</h2>
-        <div class="checkbox-container">
-            <input type="checkbox" id="previous_job_absent" name="previous_job_absent" value="absent">
-            <label for="previous_job_absent">Отсутствует</label>
-        </div>
-
-        <div id="previous_job_section">
-            <label for="previous_job">Предыдущее место работы:</label>
-            <textarea id="previous_job" name="previous_job" placeholder="Введите предыдущее место работы"></textarea>
-
-            <div class="work-period">
-                <label for="previous_job_start">С:</label>
-                <input type="date" id="previous_job_start" name="previous_job_start">
-
-                <label for="previous_job_end">По:</label>
-                <input type="date" id="previous_job_end" name="previous_job_end">
-            </div>
-
-            <label for="prev_job_format">Форма трудоустройства:</label>
-            <select id="prev_job_format" name="prev_job_format">
-                <option value="по трудовой книге (ТК РФ)">По трудовой книге (ТК РФ)</option>
-                <option value="ГПХ">ГПХ</option>
-                <option value="неофициально">Неофициально</option>
-            </select>
-        </div>
-
-        <h2>Сведения об учебе</h2>
-        <label for="education_level">Тип образования:</label>
-        <select id="education_level" name="education_level">
-            <option value="среднее">Среднее</option>
-            <option value="среднее специальное">Среднее специальное</option>
-            <option value="Неоконченное высшее">Неполное высшее (еще учусь)</option>
-            <option value="Неоконченное высшее">Неоконченное высшее (бросил учебу)</option>
-            <option value="высшее">Высшее</option>
-        </select>
-
-        <label for="education_place">Место учебы (название учебного заведения):</label>
-        <textarea id="education_place" name="education_place"
-            placeholder="Введите название учебного заведения"></textarea>
-
-        <div class="work-period">
-            <label for="education_start">С:</label>
-            <input type="date" id="education_start" name="education_start">
-
-            <label for="education_end">По:</label>
-            <input type="date" id="education_end" name="education_end">
-        </div>
-        <div class="checkbox-container">
-            <input type="checkbox" id="education_present" name="education_present" value="present">
-            <label for="education_present">По настоящее время!</label>
-        </div>
-
-        <label for="faculty">Факультет. Специальность:</label>
-        <textarea id="faculty" name="faculty" placeholder="Введите факультет и специальность"></textarea>
-
-        <button type="submit" class="submit-btn">Отправить анкету</button>
-    </form>
-
-    <script>
-        // Логика для чекбоксов "По н.в."
-        document.getElementById('current_job_present').addEventListener('change', function () {
-            const currentJobEnd = document.getElementById('current_job_end');
-            if (this.checked) {
-                currentJobEnd.disabled = true;
-                currentJobEnd.placeholder = 'По н.в.';
-                currentJobEnd.value = '';
-                currentJobEnd.classList.add('disabled');
-            } else {
-                currentJobEnd.disabled = false;
-                currentJobEnd.placeholder = '';
-                currentJobEnd.classList.remove('disabled');
-            }
-        });
-
-        document.getElementById('education_present').addEventListener('change', function () {
-            const educationEnd = document.getElementById('education_end');
-            if (this.checked) {
-                educationEnd.disabled = true;
-                educationEnd.placeholder = 'По н.в.';
-                educationEnd.value = '';
-                educationEnd.classList.add('disabled');
-            } else {
-                educationEnd.disabled = false;
-                educationEnd.placeholder = '';
-                educationEnd.classList.remove('disabled');
-            }
-        });
-
-        // Логика для скрытия секции "Предыдущее место работы"
-        document.getElementById('previous_job_absent').addEventListener('change', function () {
-            const previousJobSection = document.getElementById('previous_job_section');
-            if (this.checked) {
-                previousJobSection.classList.add('hidden');
-            } else {
-                previousJobSection.classList.remove('hidden');
-            }
-        });
-    </script>
+        <!-- Добавляем плавающие элементы -->
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+    </div>
 </body>
 
 </html>
