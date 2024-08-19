@@ -75,6 +75,7 @@
         input[type="date"] {
             width: 100%;
             padding: 12px;
+            margin-bottom: 20px;
             background-color: rgba(255, 255, 255, 0.2);
             border: none;
             border-radius: 10px;
@@ -128,7 +129,9 @@
         }
 
         @media (max-width: 768px) {
-            .work-period input[type="date"] {
+
+            input[type="date"],
+            select {
                 width: calc(50% - 10px);
             }
 
@@ -198,7 +201,7 @@
 
         <h2>Сведения о работе</h2>
         <label for="current_job">Текущее место работы:</label>
-        <textarea id="current_job" name="current_job" placeholder="Введите текущее место работы"></textarea>
+        <textarea id="current_job" name="current_job" placeholder="ООО 'Контора', тракторист-механизатор"></textarea>
 
         <div class="work-period">
             <label for="current_job_start">С:</label>
@@ -209,7 +212,7 @@
         </div>
         <div class="checkbox-container">
             <input type="checkbox" id="current_job_present" name="current_job_present" value="present">
-            <label for="current_job_present">По настоящее время</label>
+            <label for="current_job_present">По н.в.</label>
         </div>
 
         <label for="job_format">Форма трудоустройства:</label>
@@ -227,7 +230,8 @@
 
         <div id="previous_job_section">
             <label for="previous_job">Предыдущее место работы:</label>
-            <textarea id="previous_job" name="previous_job" placeholder="Введите предыдущее место работы"></textarea>
+            <textarea id="previous_job" name="previous_job"
+                placeholder="ООО 'Контора', тракторист-механизатор"></textarea>
 
             <div class="work-period">
                 <label for="previous_job_start">С:</label>
@@ -250,8 +254,8 @@
         <select id="education_level" name="education_level">
             <option value="среднее">Среднее</option>
             <option value="среднее специальное">Среднее специальное</option>
-            <option value="Неоконченное высшее">Неполное высшее (еще учусь)</option>
             <option value="Неоконченное высшее">Неоконченное высшее (бросил учебу)</option>
+            <option value="Неоконченное высшее">Неполное высшее (еще учусь)</option>
             <option value="высшее">Высшее</option>
         </select>
 
@@ -268,7 +272,7 @@
         </div>
         <div class="checkbox-container">
             <input type="checkbox" id="education_present" name="education_present" value="present">
-            <label for="education_present">По настоящее время!</label>
+            <label for="education_present">По н.в.</label>
         </div>
 
         <label for="faculty">Факультет. Специальность:</label>
