@@ -134,8 +134,15 @@
 
             .work-period input[type="text"],
             .work-period select {
+                background-color: rgba(255, 255, 255, 0.2);
+                color: #fff;
                 width: calc(50% - 5px);
                 margin-bottom: 10px;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                appearance: none;
+                transition: background-color 0.3s ease, color 0.3s ease;
+                border: none;
+                border-radius: 10px;
             }
 
             .work-period {
@@ -186,8 +193,10 @@
         <label for="fio">ФИО:</label>
         <input type="text" id="fio" name="fio" placeholder="Введите ваше ФИО">
 
-        <label for="dob">Дата рождения:</label>
-        <input type="text" id="dob" name="dob">
+        <div class="work-period">
+            <label for="dob">Дата рождения:</label><br />
+            <input type="text" id="dob" name="dob">
+        </div>
 
         <label for="email">E-mail:</label>
         <input type="email" id="email" name="email" placeholder="vasya@mail.ru">
@@ -282,7 +291,7 @@
         <textarea id="education_place" name="education_place"
             placeholder="Введите название учебного заведения"></textarea>
 
-        <div class="education_start">
+        <div class="work-period">
             <label for="education_start">С:</label>
             <input type="text" id="education_start" name="education_start">
 
