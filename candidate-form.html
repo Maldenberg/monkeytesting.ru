@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/node_modules/flatpickr/dist/flatpickr.min.css">
     <title>Анкета ученика</title>
     <style>
         body {
@@ -42,6 +43,7 @@
         input[type="text"],
         input[type="tel"],
         input[type="url"],
+        input[type="email"],
         textarea,
         select {
             width: 100%;
@@ -180,7 +182,10 @@
         <input type="text" id="fio" name="fio" placeholder="Введите ваше ФИО">
 
         <label for="dob">Дата рождения:</label>
-        <input type="date" id="dob" name="dob">
+        <input type="text" id="dob" name="dob">
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="vasya@mail.ru">
 
         <label for="vk">Ссылка на ВК:</label>
         <input type="url" id="vk" name="vk" placeholder="https://vk.com/ваш_профиль">
@@ -215,10 +220,10 @@
 
             <div class="work-period">
                 <label for="current_job_start">С:</label>
-                <input type="date" id="current_job_start" name="current_job_start">
+                <input type="text" id="current_job_start" name="current_job_start">
 
                 <label for="current_job_end">По:</label>
-                <input type="date" id="current_job_end" name="current_job_end">
+                <input type="text" id="current_job_end" name="current_job_end">
             </div>
             <div class="checkbox-container">
                 <input type="checkbox" id="current_job_present" name="current_job_present" value="present">
@@ -244,10 +249,10 @@
 
             <div class="work-period">
                 <label for="previous_job_start">С:</label>
-                <input type="date" id="previous_job_start" name="previous_job_start">
+                <input type="text" id="previous_job_start" name="previous_job_start">
 
                 <label for="previous_job_end">По:</label>
-                <input type="date" id="previous_job_end" name="previous_job_end">
+                <input type="text" id="previous_job_end" name="previous_job_end">
             </div>
 
             <label for="prev_job_format">Форма трудоустройства:</label>
@@ -272,12 +277,12 @@
         <textarea id="education_place" name="education_place"
             placeholder="Введите название учебного заведения"></textarea>
 
-        <div class="work-period">
+        <div class="education_start">
             <label for="education_start">С:</label>
-            <input type="date" id="education_start" name="education_start">
+            <input type="text" id="education_start" name="education_start">
 
             <label for="education_end">По:</label>
-            <input type="date" id="education_end" name="education_end">
+            <input type="text" id="education_end" name="education_end">
         </div>
         <div class="checkbox-container">
             <input type="checkbox" id="education_present" name="education_present" value="present">
@@ -290,10 +295,24 @@
         <button type="submit" class="submit-btn">Отправить анкету</button>
     </form>
 
+    <script src="/node_modules/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="/node_modules/flatpickr/dist/l10n/ru.js"></script>
     <script>
+        // Локализация на русский язык
+        flatpickr.localize(flatpickr.l10ns.ru);
+
+        // Инициализация Flatpickr на полях формы
+        flatpickr("#dob, #current_job_end, #current_job_start, #education_start, #education_end, #previous_job_start, #previous_job_end", {
+            dateFormat: "d-m-Y",
+            altInput: true,
+            altFormat: "d.m.Y",
+            onReady: function (selectedDates, dateStr, instance) {
+                instance.altInput.setAttribute("placeholder", "Выберите дату");
+            }
+        });
         // Логика для чекбоксов "По н.в."
         document.getElementById('current_job_present').addEventListener('change', function () {
-            const currentJobEnd = document.getElementById('current_job_end');
+            const currentJobEnd = document.getElementById('current_job_end')._flatpickr.altInput;
             if (this.checked) {
                 currentJobEnd.disabled = true;
                 currentJobEnd.placeholder = 'По н.в.';
@@ -301,13 +320,13 @@
                 currentJobEnd.classList.add('disabled');
             } else {
                 currentJobEnd.disabled = false;
-                currentJobEnd.placeholder = '';
+                currentJobEnd.placeholder = 'Выберите дату';
                 currentJobEnd.classList.remove('disabled');
             }
         });
 
         document.getElementById('education_present').addEventListener('change', function () {
-            const educationEnd = document.getElementById('education_end');
+            const educationEnd = document.getElementById('education_end')._flatpickr.altInput;
             if (this.checked) {
                 educationEnd.disabled = true;
                 educationEnd.placeholder = 'По н.в.';
@@ -315,10 +334,11 @@
                 educationEnd.classList.add('disabled');
             } else {
                 educationEnd.disabled = false;
-                educationEnd.placeholder = '';
+                educationEnd.placeholder = 'Выберите дату';
                 educationEnd.classList.remove('disabled');
             }
         });
+
 
         // Логика для скрытия полей, относящихся к текущему месту работы
         document.getElementById('current_job_absent').addEventListener('change', function () {
@@ -340,6 +360,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>
